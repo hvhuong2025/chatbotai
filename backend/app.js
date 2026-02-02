@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize Gemini
-// Note: On Netlify, environment variables are set in the Dashboard, not .env file
+// Note: On Vercel, environment variables are set in the Project Settings
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const MODEL_NAME = "gemini-3-flash-preview";
 const SYSTEM_INSTRUCTION = `
@@ -75,9 +75,8 @@ router.post('/chat', async (req, res) => {
 });
 
 // Mount router
-// Localhost calls: /api/chat
-// Netlify calls: /.netlify/functions/api/chat
-app.use('/api', router); // For Local
-app.use('/.netlify/functions/api', router); // For Netlify Production
+// Vercel will route /api/* to api/index.js
+// Express will see the full path, so we mount on /api
+app.use('/api', router);
 
 export default app;
