@@ -1,0 +1,5 @@
+{
+  "name": "SuViet AI Tutor",
+  "description": "An AI-powered tutor specialized in Vietnamese History, featuring secure client-side API key management.",
+  "requestFramePermissions": []
+}
